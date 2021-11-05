@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_222216) do
+ActiveRecord::Schema.define(version: 2021_11_05_224049) do
 
   create_table "orders", force: :cascade do |t|
     t.string "first_name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_222216) do
     t.string "status", default: "not_paid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "payment_link"
   end
 
 end
