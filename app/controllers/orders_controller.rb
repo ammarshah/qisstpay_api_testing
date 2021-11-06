@@ -68,8 +68,8 @@ class OrdersController < ApplicationController
       
       callback_response = CallbackResponse.create(body: JSON.pretty_generate(body_hash), order_id: order_id)
       order = Order.find_by_id(order_id)
-      byebug
-      order.status = order_status == "completed" ? "paid" : "not_paid"
+      order.status = "paid" if order_status == "completed"
+
       order.save!      
       
       puts "========= CALLBACK RECEIVED ========="
