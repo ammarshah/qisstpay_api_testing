@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_224049) do
+ActiveRecord::Schema.define(version: 2021_11_06_004742) do
+
+  create_table "api_requests", force: :cascade do |t|
+    t.string "body"
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_api_requests_on_order_id"
+  end
+
+  create_table "api_responses", force: :cascade do |t|
+    t.string "body"
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_api_responses_on_order_id"
+  end
+
+  create_table "callback_responses", force: :cascade do |t|
+    t.string "body"
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_callback_responses_on_order_id"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.string "first_name"
@@ -23,4 +47,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_224049) do
     t.string "payment_link"
   end
 
+  add_foreign_key "api_requests", "orders"
+  add_foreign_key "api_responses", "orders"
+  add_foreign_key "callback_responses", "orders"
 end

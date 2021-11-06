@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>ID:</strong>
+  <%= @order.id %>
+</p>
+
+<p>
   <strong>First name:</strong>
   <%= @order.first_name %>
 </p>
@@ -24,6 +29,24 @@
   <strong>Status:</strong>
   <%= @order.status %>
 </p>
+
+<h3>API Request</h3>
+<div style="background-color:black; color:white">
+  <%= @order.api_request.body if @order.api_request.present? %>
+</div>
+</br>
+
+<h3>API Response</h3>
+<div style="background-color:black; color:white">
+  <%= @order.api_response.body if @order.api_response.present? %>
+</div>
+</br>
+
+<h3>Callback Response</h3>
+<div style="background-color:black; color:white">
+  <%= @order.callback_response.body if @order.callback_response.present? %>
+</div>
+</br>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

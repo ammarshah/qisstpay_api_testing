@@ -3,6 +3,10 @@ class Order < ApplicationRecord
 
   after_save :request_qisstpay_api
 
+	has_one :api_request, dependent: :destroy
+	has_one :api_response, dependent: :destroy
+	has_one :callback_response, dependent: :destroy
+
   private
 		def request_qisstpay_api
 			# Create a payload
@@ -52,8 +56,14 @@ class Order < ApplicationRecord
 				req.body = hash_body.to_json
 			end
 
+			# Save ApiRequest with the order ID
+			ApiRequest.create(body: JSON.pretty_generate(hash_body), order_id: self.id)
+
 			# Parse the response
 			json_response = JSON.parse(response.body)
+
+			# Save ApiResponse with the order ID
+			ApiResponse.create(body: JSON.pretty_generate(json_response), order_id: self.id)
 			
 			# Update payment_link column in the order
 			if json_response["success"]
