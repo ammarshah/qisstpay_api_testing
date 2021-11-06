@@ -30,23 +30,27 @@
   <%= @order.status %>
 </p>
 
-<h3>API Request</h3>
+<h2>API Request</h2>
 <div style="background-color:black; color:white">
   <%= @order.api_request.body if @order.api_request.present? %>
 </div>
 </br>
 
-<h3>API Response</h3>
+<h2>API Response</h2>
 <div style="background-color:black; color:white">
   <%= @order.api_response.body if @order.api_response.present? %>
 </div>
 </br>
 
-<h3>Callback Response</h3>
+<h2>Callback Response</h2>
+<p>Params</p>
+<div style="background-color:black; color:white">
+  <%= @order.callback_response.params if @order.callback_response.present? %>
+</div>
+<p>Body</p>
 <div style="background-color:black; color:white">
   <%= @order.callback_response.body if @order.callback_response.present? %>
 </div>
 </br>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

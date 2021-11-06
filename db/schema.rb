@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_004742) do
   end
 
   create_table "callback_responses", force: :cascade do |t|
+    t.string "params"
     t.string "body"
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
