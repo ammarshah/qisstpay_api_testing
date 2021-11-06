@@ -37,16 +37,13 @@
 </br>
 
 <h2>API Response</h2>
+<p>Body</p>
 <div style="background-color:black; color:white">
   <%= @order.api_response.body if @order.api_response.present? %>
 </div>
 </br>
 
 <h2>Callback Response</h2>
-<p>Params</p>
-<div style="background-color:black; color:white">
-  <%= @order.callback_response.params if @order.callback_response.present? %>
-</div>
 <p>Body</p>
 <div style="background-color:black; color:white">
   <%= @order.callback_response.body if @order.callback_response.present? %>

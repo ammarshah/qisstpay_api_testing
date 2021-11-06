@@ -60,11 +60,17 @@ class OrdersController < ApplicationController
   # POST /orders/callback
   def callback
     if request.post?
-      parameters = params.to_json
       body = request.body.read
-
-      callback_response = CallbackResponse.create(params: parameters, body: body, order_id: 1)
-
+      body_hash = JSON.parse(body)
+      order_id = body_hash["result"]["merchant_order_id"].to_i
+      order_status = body_hash["result"]["order_status"]
+      
+      
+      callback_response = CallbackResponse.create(body: JSON.pretty_generate(body_hash), order_id: order_id)
+      order = Order.find_by_id(order_id)
+      order.status = order_status
+      order.save!      
+      
       puts "========= CALLBACK RECEIVED ========="
     end
   end
