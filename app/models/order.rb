@@ -45,8 +45,8 @@ class Order < ApplicationRecord
 				],
 				itemFlag: true,
 				merchant_order_id: self.id,
-				call_back_url: "https://417e-39-50-228-163.ngrok.io",
-				redirect_url: "http://localhost:3000/orders/" + self.id.to_s
+				call_back_url: ENV['QISSTPAY_CALLBACK_URL'],
+				redirect_url: ENV['QISSTPAY_REDIRECT_URL'] + self.id.to_s
 			}
 
 			# Send API request to QisstPay
