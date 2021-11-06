@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_11_06_004742) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "api_requests", force: :cascade do |t|
     t.string "body"
-    t.integer "order_id", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_api_requests_on_order_id"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_004742) do
 
   create_table "api_responses", force: :cascade do |t|
     t.string "body"
-    t.integer "order_id", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_api_responses_on_order_id"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_004742) do
 
   create_table "callback_responses", force: :cascade do |t|
     t.string "body"
-    t.integer "order_id", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_callback_responses_on_order_id"
